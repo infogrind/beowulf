@@ -1,0 +1,13 @@
+# Compiled sources
+*.class
+
+# Application runtime files
+*.log
+
+# IDE Settings
+.project
+.settings
+.classpath
+
+# OS generated files
+.DS_Store
