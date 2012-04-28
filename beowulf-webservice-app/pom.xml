@@ -2,16 +2,20 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-	<groupId>ch.hotstuff</groupId>
-	<artifactId>beowulf-masterbuild</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<relativePath>../beowulf-masterbuild/pom.xml</relativePath>
-</parent>
+	<parent>
+		<groupId>ch.hotstuff</groupId>
+		<artifactId>beowulf-masterbuild</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../beowulf-masterbuild/pom.xml</relativePath>
+	</parent>
 	<artifactId>beowulf-webservice-app</artifactId>
 	<packaging>war</packaging>
-
+	
 	<name>beowulf-webservice-app Maven Webapp</name>
+	<properties>
+		<webservice.path>/webservice</webservice.path>
+	</properties>
+
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -22,7 +26,7 @@
 		<dependency>
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-business-svc</artifactId>
-			<scope>test</scope>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -57,7 +61,7 @@
 							</goals>
 							<configuration>
 								<port>12345</port>
-								<path>/webservice</path>
+								<path>${webservice.path}</path>
 								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 							</configuration>
 						</execution>
@@ -112,7 +116,7 @@
 						<phase>process-test-resources</phase>
 						<configuration>
 							<portNames>
-								<portName>test.server.portli</portName>
+								<portName>test.server.port</portName>
 							</portNames>
 						</configuration>
 					</execution>
@@ -131,8 +135,8 @@
 						</goals>
 						<phase>pre-integration-test</phase>
 						<configuration>
-							<port>${test.server.portli}</port>
-							<path>/jaxrs-service</path>
+							<port>${test.server.port}</port>
+							<path>${webservice.path}</path>
 							<fork>true</fork>
 							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 						</configuration>
@@ -146,7 +150,7 @@
 						</goals>
 						<phase>post-integration-test</phase>
 						<configuration>
-							<path>/jaxrs-service</path>
+							<path>${webservice.path}</path>
 						</configuration>
 					</execution>
 				</executions>
@@ -163,7 +167,7 @@
 						</goals>
 						<configuration>
 							<systemPropertyVariables>
-								<service.url>http://localhost:${test.server.portli}/jaxrs-service</service.url>
+								<service.url>http://localhost:${test.server.port}${webservice.path}</service.url>
 							</systemPropertyVariables>
 						</configuration>
 					</execution>

@@ -20,12 +20,6 @@
     </appender>
 
     <!-- for all other loggers log only info and above log messages -->
-    <logger name="ch.hotstuff.webapp.servlet" additivity="false">
-    	<level value="DEBUG"/>
-    	<appender-ref ref="STDOUT"/>
-    	<appender-ref ref="FILE"/>
-    </logger>
-    
     <logger name="org.springframework" additivity="false">
     	<level value="INFO"/>
     	<appender-ref ref="STDOUT"/>

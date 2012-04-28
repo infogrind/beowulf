@@ -1,5 +1,6 @@
 # Compiled sources
 *.class
+target
 
 # Application runtime files
 *.log
