@@ -1,0 +1,20 @@
+This directory contains a proof-of-concept implementation of a multi-module
+maven project. 
+
+
+The subdirectories are as follows:
+
+beowulf-masterbuild            Parent POM, to build all subprojects.
+beowulf-business-svc           Web service interface, used by both consumer and
+                               provider implementations.
+beowulf-business-svc-impl      Web service implementation
+beowulf-webservice-app         A web application that exposes the webservice
+                               using CXF.
+
+Note that the service (interface) and implementation projects have nothing
+webservice specific about them, other than one annotation @WebService in the
+service interface. Thus, this annotation is the only thing needed to make the
+POJO interface/implementation pair accessible via web service.
+
+The whole webapp/serlet stuff (but no handwritten java code!) is in the
+beowulf-webservice-app project. 
