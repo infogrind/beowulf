@@ -18,3 +18,5 @@ POJO interface/implementation pair accessible via web service.
 
 The whole webapp/serlet stuff (but no handwritten java code!) is in the
 beowulf-webservice-app project. 
+
+Also, the project uses complete Eclipse/m2e integration.
