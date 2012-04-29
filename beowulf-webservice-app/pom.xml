@@ -175,6 +175,7 @@
 						<configuration>
 							<systemPropertyVariables>
 								<service.url>http://localhost:${test.server.port}${webservice.path}</service.url>
+								<db.url>jdbc://to.be.defined</db.url>
 							</systemPropertyVariables>
 						</configuration>
 					</execution>
