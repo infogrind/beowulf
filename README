@@ -10,13 +10,15 @@ beowulf-business-svc           Web service interface, used by both consumer and
 beowulf-business-svc-impl      Web service implementation
 beowulf-webservice-app         A web application that exposes the webservice
                                using CXF.
+beowulf-frontend-json          A web application that offers some RESTful web
+                               services that produce JSON. 
 
 Note that the service (interface) and implementation projects have nothing
 webservice specific about them, other than one annotation @WebService in the
 service interface. Thus, this annotation is the only thing needed to make the
 POJO interface/implementation pair accessible via web service.
 
-The whole webapp/serlet stuff (but no handwritten java code!) is in the
+The whole webapp/servlet stuff (but no handwritten java code!) is in the
 beowulf-webservice-app project. 
 
 Also, the project uses complete Eclipse/m2e integration.

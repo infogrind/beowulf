@@ -23,6 +23,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	<jaxrs:server id="services" address="/json">
 		<jaxrs:serviceBeans>
 			<bean class="ch.hotstuff.beowulf.frontend.json.service.impl.PingServiceImpl" />
+			<bean class="ch.hotstuff.beowulf.frontend.json.service.impl.InstrumentServiceImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
