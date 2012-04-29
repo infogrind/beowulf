@@ -12,12 +12,22 @@
 	<packaging>war</packaging>
 	
 	<name>beowulf-frontend-json Maven Webapp</name>
+	<properties>
+		<webservice.path>/beowulfsvc</webservice.path>
+	</properties>
 	<url>http://maven.apache.org</url>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		
 		<!-- Dependencies for RESTful webservices and JSON -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -41,5 +51,138 @@
 	</dependencies>
 	<build>
 		<finalName>beowulf-frontend-json</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<version>1.1</version>
+					<executions>
+						<execution>
+							<id>default-cli</id>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<port>8843</port>
+								<path>${webservice.path}</path>
+								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											build-helper-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.5,)
+										</versionRange>
+										<goals>
+											<goal>
+												reserve-network-port
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>reserve-network-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>process-test-resources</phase>
+						<configuration>
+							<portNames>
+								<portName>test.server.port</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- This says: Run the "run-war" goal of the tomcat plugin in the 
+							build phase "pre-integration-test". -->
+						<id>start-tomcat</id>
+						<goals>
+							<goal>run-war</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<port>${test.server.port}</port>
+							<path>${webservice.path}</path>
+							<fork>true</fork>
+							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+						</configuration>
+					</execution>
+					<execution>
+						<!-- This says: Run the "shutdown" goal of the tomcat plugin in the 
+							build phase "post-integration-test". -->
+						<id>stop-tomcat</id>
+						<goals>
+							<goal>shutdown</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+						<configuration>
+							<path>${webservice.path}</path>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.8.1</version>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<systemPropertyVariables>
+								<service.url>http://localhost:${test.server.port}${webservice.path}</service.url>
+							</systemPropertyVariables>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>
