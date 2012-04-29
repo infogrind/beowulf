@@ -12,7 +12,7 @@
     </appender>
 
     <appender name="FILE" class="org.apache.log4j.FileAppender">
-        <param name="File" value="var/${project.build.finalName}.log"/>
+        <param name="File" value="${project.build.finalName}.log"/>
         <param name="Threshold" value="INFO"/>
         <layout class="org.apache.log4j.PatternLayout"> 
             <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/> 
