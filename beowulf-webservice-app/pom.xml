@@ -29,6 +29,13 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+            <groupId>ch.hotstuff</groupId>
+            <artifactId>beowulf-dao-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>

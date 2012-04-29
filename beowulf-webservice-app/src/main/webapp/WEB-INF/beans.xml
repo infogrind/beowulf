@@ -23,7 +23,13 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
     <!-- A SOAP web service (using jaxws) -->
 	<jaxws:endpoint 
 	  id="helloWorld" 
-	  implementor="ch.hotstuff.beowulf.services.impl.HelloWorldImpl" 
+	  implementor="#helloService" 
 	  address="/HelloWorld" />
+	  
+	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl">
+		<property name="dao" ref="helloDao"/>
+	</bean>
+	
+	<bean id="helloDao" class="ch.hotstuff.beowulf.dao.impl.HelloDaoImpl" />
 
 </beans>
