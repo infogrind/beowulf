@@ -15,6 +15,7 @@
       <module>../beowulf-webservice-app</module>
       <module>../beowulf-dao-intf</module>
       <module>../beowulf-dao-impl</module>
+      <module>../beowulf-frontend-json</module>
   </modules>
 
   <properties>
@@ -56,6 +57,11 @@
         <dependency>
             <groupId>ch.hotstuff</groupId>
             <artifactId>beowulf-dao-impl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.hotstuff</groupId>
+            <artifactId>beowulf-frontend-json</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
