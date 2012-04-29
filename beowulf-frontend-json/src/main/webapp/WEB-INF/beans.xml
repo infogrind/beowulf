@@ -19,6 +19,14 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
   <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
   <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
 
-
+	<!-- A RESTful service (using jaxrs) -->
+	<jaxrs:server id="services" address="/json">
+		<jaxrs:serviceBeans>
+			<bean class="ch.hotstuff.beowulf.frontend.json.service.impl.PingServiceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>
 
 </beans>
