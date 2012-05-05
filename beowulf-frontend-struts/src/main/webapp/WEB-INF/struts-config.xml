@@ -4,10 +4,21 @@
 "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 <struts-config>
 	<form-beans>
+		<form-bean name="SomeForm" type="ch.hotstuff.beowulf.frontend.struts.form.SomeForm" />
 	</form-beans>
+
+	<global-forwards>
+		<forward name="welcome" path="/welcome.jsp" />
+	</global-forwards>
+
 	<action-mappings>
-		<action path="/Welcome" type="org.springframework.web.struts.DelegatingActionProxy">
-			<forward name="welcome" path="/welcome.jsp" />
+		<action path="/Welcome"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+		</action>
+		<action path="/SomeAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="SomeForm"
+			scope="request">
 		</action>
 	</action-mappings>
 </struts-config>

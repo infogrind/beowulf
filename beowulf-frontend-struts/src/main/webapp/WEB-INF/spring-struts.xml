@@ -10,5 +10,6 @@
     <!-- attention, use the 'name' and not the 'id' attribute for such
          beans!
          -->
-    <bean name="/Welcome" class="ch.hotstuff.beowulf.frontend.struts.WelcomeAction"/>
+    <bean name="/Welcome" class="ch.hotstuff.beowulf.frontend.struts.action.WelcomeAction"/>
+    <bean name="/SomeAction" class="ch.hotstuff.beowulf.frontend.struts.action.SomeAction"/>
 </beans>

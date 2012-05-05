@@ -1,4 +1,4 @@
-package ch.hotstuff.beowulf.frontend.struts.test.seleniumj;
+package ch.hotstuff.beowulf.frontend.struts.test.selenium;
 
 import static org.junit.Assert.assertEquals;
 

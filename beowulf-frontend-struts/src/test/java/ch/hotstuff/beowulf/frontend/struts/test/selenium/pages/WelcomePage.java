@@ -17,9 +17,6 @@ public class WelcomePage
 	public static WelcomePage navigateTo(WebDriver driver)
 	{
 		final String URL = System.getProperty("webapp.url");
-		assert(URL != null);
-		System.out.println("URL = " + URL);
-		
 		driver.get(URL);
 		return PageFactory.initElements(driver, WelcomePage.class);
 	}
