@@ -1,0 +1,1 @@
+- Fix form in struts frontend (submit causes exception)
