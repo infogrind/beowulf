@@ -18,7 +18,9 @@
 		<action path="/SomeAction"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			name="SomeForm"
+			validate="false"
 			scope="request">
+			<forward name="foodinfo" path="/foodinfo.jsp"/>
 		</action>
 	</action-mappings>
 </struts-config>

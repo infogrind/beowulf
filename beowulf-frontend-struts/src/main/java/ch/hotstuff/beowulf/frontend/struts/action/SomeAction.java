@@ -18,7 +18,7 @@ public class SomeAction extends Action {
 			HttpServletResponse response)
 	throws Exception 
 	{
-		return mapping.findForward("welcome");
+		return mapping.findForward("foodinfo");
 	}
 
 }

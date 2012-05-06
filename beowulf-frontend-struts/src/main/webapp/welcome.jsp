@@ -22,7 +22,7 @@
 			<td><html:text property="drink" size="16"/></td>
 		</tr>
 	</table>
-	<p><html:submit>Submit</html:submit>&nbsp;<html:reset>Reset</html:reset></p>
+	<p><html:submit styleId="submitButton">Submit</html:submit>&nbsp;<html:reset>Reset</html:reset></p>
 </html:form>
 </body>
 </html:html>
