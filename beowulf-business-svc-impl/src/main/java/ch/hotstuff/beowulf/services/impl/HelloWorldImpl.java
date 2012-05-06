@@ -1,6 +1,6 @@
 package ch.hotstuff.beowulf.services.impl;
 
-import ch.hotstuff.beowulf.dao.intf.HelloDao;
+import ch.hotstuff.beowulf.dao.HelloDao;
 import ch.hotstuff.beowulf.services.HelloWorld;
 
 public class HelloWorldImpl implements HelloWorld

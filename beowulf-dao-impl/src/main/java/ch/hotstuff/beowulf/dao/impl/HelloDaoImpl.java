@@ -1,6 +1,6 @@
 package ch.hotstuff.beowulf.dao.impl;
 
-import ch.hotstuff.beowulf.dao.intf.HelloDao;
+import ch.hotstuff.beowulf.dao.HelloDao;
 
 public class HelloDaoImpl implements HelloDao
 {

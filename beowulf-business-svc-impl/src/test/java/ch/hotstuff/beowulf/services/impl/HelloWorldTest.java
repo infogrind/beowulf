@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import ch.hotstuff.beowulf.dao.intf.HelloDao;
+import ch.hotstuff.beowulf.dao.HelloDao;
 
 public class HelloWorldTest 
 {

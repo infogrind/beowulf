@@ -1,4 +1,4 @@
-package ch.hotstuff.beowulf.dao.intf;
+package ch.hotstuff.beowulf.dao;
 
 public interface HelloDao
 {
