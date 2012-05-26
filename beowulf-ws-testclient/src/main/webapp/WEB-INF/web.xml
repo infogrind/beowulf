@@ -17,5 +17,18 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+    <servlet>
+        <servlet-name>wsclientservlet</servlet-name>
+        <servlet-class>
+            ch.hotstuff.beowulf.wsclient.servlet.WsClientServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>wsclientservlet</servlet-name>
+        <url-pattern>/wsclientservlet</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

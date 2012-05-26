@@ -8,8 +8,12 @@
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../beowulf-masterbuild/pom.xml</relativePath>
 	</parent>
-	<artifactId>beowulf-webservice-app</artifactId>
+	<artifactId>beowulf-ws-testclient</artifactId>
 	<packaging>war</packaging>
+	
+	<properties>
+		<webapp.path>/wsclient</webapp.path>
+	</properties>
 
 	<name>beowulf-ws-testclient Maven Webapp</name>
 	<url>http://maven.apache.org</url>
