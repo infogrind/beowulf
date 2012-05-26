@@ -19,4 +19,13 @@ public class HelloWorldTest
 		
 		assertEquals("Hello, world!", impl.sayHello());
 	}
+	
+	@Test
+	public void revertCorrectlyRevertsString()
+	{
+		HelloWorldImpl impl = new HelloWorldImpl();
+		assertEquals("dnuH", impl.revert("Hund"));
+		assertEquals("", impl.revert(""));
+		assertEquals("relywdnuH", impl.revert("Hundwyler"));
+	}
 }

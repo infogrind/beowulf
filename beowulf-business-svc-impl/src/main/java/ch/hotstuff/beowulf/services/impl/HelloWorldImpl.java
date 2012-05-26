@@ -22,4 +22,12 @@ public class HelloWorldImpl implements HelloWorld
 		return greeting;
 	}
 
+	@Override
+	public String revert(String s)
+	{
+		if (s == null) { throw new NullPointerException("s must not be null"); }
+		
+		return (new StringBuilder(s)).reverse().toString();
+	}
+
 }
