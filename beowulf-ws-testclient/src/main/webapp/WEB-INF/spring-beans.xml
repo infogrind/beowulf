@@ -6,9 +6,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <!-- inject the struts action -->
-    <!-- attention, use the 'name' and not the 'id' attribute for such
-         beans!
-         -->
+    <bean id="someBean" class="ch.hotstuff.beowulf.wsclient.util.impl.SomeBeanImpl">
+    	<property name="name" value="Katzeklo" />
+    </bean>
 
 </beans>
