@@ -14,6 +14,7 @@
 	<name>beowulf-webservice-app Maven Webapp</name>
 	<properties>
 		<webservice.path>/webservice</webservice.path>
+		<webservice.port>8443</webservice.port>
 	</properties>
 
 	<url>http://maven.apache.org</url>
@@ -67,7 +68,7 @@
 								<goal>run</goal>
 							</goals>
 							<configuration>
-								<port>12345</port>
+								<port>${webservice.port}</port>
 								<path>${webservice.path}</path>
 								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 							</configuration>
