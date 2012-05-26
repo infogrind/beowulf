@@ -26,6 +26,11 @@
     	<appender-ref ref="FILE"/>
     </logger>
     
+    <logger name="ch.hotstuff.beowulf" additivity="false">
+    	<level value="DEBUG"/>
+    	<appender-ref ref="STDOUT"/>
+    </logger>
+    
     <root>
         <level value="INFO"/>
         <appender-ref ref="STDOUT" /> 
