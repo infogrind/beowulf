@@ -104,7 +104,11 @@
 				<artifactId>spring-struts</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 			<!-- Struts -->
 			<dependency>
 				<groupId>org.apache.struts</groupId>
