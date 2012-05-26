@@ -7,7 +7,7 @@
         <param name="Threshold" value="DEBUG"/>
         <layout class="org.apache.log4j.PatternLayout"> 
             <!--  <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/>  -->
-            <param name="ConversionPattern" value="%d %-5p [%.10t] [%.30c] %m%n"/>
+            <param name="ConversionPattern" value="%d %-5p [%.10t] [%.40c] %m%n"/>
         </layout> 
     </appender>
 
@@ -32,7 +32,7 @@
     </logger>
     
     <logger name="org.apache.cxf" additivity="false">
-    	<level value="DEBUG"/>
+    	<level value="INFO"/>
     	<appender-ref ref="STDOUT"/>
     	<appender-ref ref="FILE"/>
     </logger>
