@@ -1,24 +1,13 @@
 package ch.hotstuff.beowulf.wsclient.spring;
 
-import java.util.Iterator;
-
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
 
 import ch.hotstuff.beowulf.services.HelloWorld;
 
-import static org.junit.Assert.assertNotNull;
-
 public class JaxWsPortProxyFactoryWrapper implements InitializingBean
 {
-	private Logger LOG = Logger.getLogger(this.getClass());
-	
 	private JaxWsPortProxyFactoryBean wrappedBean;
-	private Service jaxWsService;
 	
 	public String getServiceName() {
 		return wrappedBean.getServiceName();
