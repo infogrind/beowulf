@@ -19,6 +19,19 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- To use servlet related classes -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>beowulf-ws-testclient</finalName>
