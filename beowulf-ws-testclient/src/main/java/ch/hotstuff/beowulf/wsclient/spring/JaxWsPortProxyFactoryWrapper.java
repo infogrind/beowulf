@@ -1,5 +1,6 @@
 package ch.hotstuff.beowulf.wsclient.spring;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
 
@@ -7,6 +8,8 @@ import ch.hotstuff.beowulf.services.HelloWorld;
 
 public class JaxWsPortProxyFactoryWrapper implements InitializingBean
 {
+	private Logger LOG = Logger.getLogger(this.getClass());
+	
 	private JaxWsPortProxyFactoryBean wrappedBean;
 	
 	public String getServiceName() {
@@ -46,6 +49,7 @@ public class JaxWsPortProxyFactoryWrapper implements InitializingBean
 	
 	public HelloWorld getPortInstance()
 	{
+		LOG.debug("Returning new port instance");
 		return (HelloWorld) wrappedBean.getObject();
 	}
 
