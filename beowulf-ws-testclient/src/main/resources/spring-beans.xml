@@ -9,5 +9,10 @@
     <bean id="someBean" class="ch.hotstuff.beowulf.wsclient.util.impl.SomeBeanImpl">
     	<property name="name" value="Katzeklo" />
     </bean>
+    
+    <bean id="webService_proxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+    	<property name="serviceClass" value="ch.hotstuff.beowulf.services.HelloWorld" />
+    	<property name="address" value="http://localhost:8443/webservice/HelloWorld" />
+    </bean>
 
 </beans>
