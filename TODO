@@ -1,1 +1,7 @@
-- Fix form in struts frontend (submit causes exception)
+- Problem that 'mvn install' from master build causes failure in
+  struts frontend integration test, because it can't load a class.
+- To reproduce, run
+    mvn -pl ../beowulf-webservice-app,../beowulf-frontend-struts install
+  from the master build directory.
+  Perhaps it has to do with the fact that tomcat and jetty both run in the same
+  JVM. Perhaps using jetty for everything would help. 
