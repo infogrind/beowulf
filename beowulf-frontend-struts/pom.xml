@@ -12,8 +12,11 @@
 	<packaging>war</packaging>
 
 	<properties>
+		<jetty.port>8123</jetty.port>
 		<webapp.path>/beowulf-frontend</webapp.path>
 		<ping.test.path>/Welcome.do</ping.test.path>
+		<webservice.port>${jetty.port}</webservice.port>
+		<webservice.path>/webservice</webservice.path>
 	</properties>
 
 	<name>beowulf-frontend-struts Maven Webapp</name>
@@ -62,11 +65,11 @@
 	<build>
 		<finalName>beowulf-frontend-struts</finalName>
 		<resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -155,6 +158,24 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<configuration>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>${jetty.port}</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<contextHandlers>
+						<contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+							<war>${basedir}/../beowulf-webservice-app/target/beowulf-webservice-app.war</war>
+							<contextPath>${webservice.path}</contextPath>
+						</contextHandler>
+					</contextHandlers>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
