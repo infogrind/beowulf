@@ -12,5 +12,6 @@
 	<body>
 		<p>Hello, this is the foodInfo.</p>
 		<p id="foodinfo">Your favorite food is <bean:write name="SomeForm" property="food"/>; your favorite drink is <bean:write name="SomeForm" property="drink"/></p>
+		<p id="message">The message is "<bean:write name="SomeForm" property="message"/>".</p>
 	</body>
 </html:html>

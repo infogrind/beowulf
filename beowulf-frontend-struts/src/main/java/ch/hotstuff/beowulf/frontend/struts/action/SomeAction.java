@@ -8,7 +8,20 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-public class SomeAction extends Action {
+import ch.hotstuff.beowulf.frontend.struts.form.SomeForm;
+import ch.hotstuff.beowulf.services.HelloWorld;
+
+public class SomeAction extends Action
+{
+	private HelloWorld helloService;
+
+	public HelloWorld getHelloService() {
+		return helloService;
+	}
+
+	public void setHelloService(HelloWorld helloService) {
+		this.helloService = helloService;
+	}
 
 	@Override
 	public ActionForward execute(
@@ -18,6 +31,10 @@ public class SomeAction extends Action {
 			HttpServletResponse response)
 	throws Exception 
 	{
+		final SomeForm someForm = (SomeForm) form;
+		final String message = helloService.sayHello();
+		someForm.setMessage(message);
+		
 		return mapping.findForward("foodinfo");
 	}
 

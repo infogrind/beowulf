@@ -22,6 +22,12 @@
 	<name>beowulf-frontend-struts Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- Beowulf components -->
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-business-svc</artifactId>
+		</dependency>
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -42,6 +48,20 @@
 			<artifactId>struts-taglib</artifactId>
 		</dependency>
 
+        <!-- Need to mark this as provided so that it is not pulled in by the
+             cxf dependencies -->
+		<!-- CXF to access web service -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
 		<!-- To use servlet related classes -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -107,6 +127,9 @@
 							<path>${webapp.path}</path>
 							<fork>true</fork>
 							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+							<systemProperties>
+								<webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
+							</systemProperties>
 						</configuration>
 					</execution>
 					<execution>
@@ -162,6 +185,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.10</version>
 				<configuration>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
@@ -169,7 +193,13 @@
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
-					<contextHandlers>
+					<systemProperties>
+						<systemProperty>
+							<name>webserviceEndpoint</name>
+							<value>http://localhost:${webservice.port}${webservice.path}</value>
+						</systemProperty>
+					</systemProperties>
+ 					<contextHandlers>
 						<contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
 							<war>${basedir}/../beowulf-webservice-app/target/beowulf-webservice-app.war</war>
 							<contextPath>${webservice.path}</contextPath>

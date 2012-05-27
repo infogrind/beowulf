@@ -1,7 +1,11 @@
 package ch.hotstuff.beowulf.frontend.struts.form;
 
-public class SomeForm 
+import org.apache.struts.action.ActionForm;
+
+public class SomeForm extends ActionForm
 {
+	private static final long serialVersionUID = 1L;
+	
 	public String getFood() {
 		return food;
 	}
@@ -14,6 +18,13 @@ public class SomeForm
 	public void setDrink(String drink) {
 		this.drink = drink;
 	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	private String food;
 	private String drink;
+	private String message;
 }

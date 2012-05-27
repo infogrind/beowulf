@@ -6,10 +6,21 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" />
+	
+	<bean id="helloService_portProxyFactory"
+		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+		<property name="serviceInterface" value="ch.hotstuff.beowulf.services.HelloWorld" />
+		<property name="serviceName" value="HelloWorld" />
+		<property name="endpointAddress" value="${webserviceEndpoint}/HelloWorld" />
+	</bean>
+
     <!-- inject the struts action -->
     <!-- attention, use the 'name' and not the 'id' attribute for such
          beans!
          -->
     <bean name="/Welcome" class="ch.hotstuff.beowulf.frontend.struts.action.WelcomeAction"/>
-    <bean name="/SomeAction" class="ch.hotstuff.beowulf.frontend.struts.action.SomeAction"/>
+    <bean name="/SomeAction" class="ch.hotstuff.beowulf.frontend.struts.action.SomeAction">
+    	<property name="helloService" ref="helloService_portProxyFactory" />
+    </bean>
 </beans>

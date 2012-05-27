@@ -25,6 +25,7 @@
 		<spring.version>3.0.6.RELEASE</spring.version>
 		<cxf.version>2.6.0</cxf.version>
 		<jackson.version>1.8.6</jackson.version>
+		<jaxws.version>2.2.8</jaxws.version>
 	</properties>
 
 	<dependencies>
@@ -160,6 +161,11 @@
 			</dependency>
 
 			<!-- Web service (SOAP) related libraries -->
+			<dependency>
+				<groupId>javax.xml.ws</groupId>
+				<artifactId>jaxws-api</artifactId>
+				<version>${jaxws.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-frontend-jaxws</artifactId>
