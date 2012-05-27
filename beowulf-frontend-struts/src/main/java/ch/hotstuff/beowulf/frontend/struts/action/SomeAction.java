@@ -32,7 +32,7 @@ public class SomeAction extends Action
 	throws Exception 
 	{
 		final SomeForm someForm = (SomeForm) form;
-		final String message = helloService.sayHello();
+		final String message = helloService.revert(helloService.sayHello());
 		someForm.setMessage(message);
 		
 		return mapping.findForward("foodinfo");

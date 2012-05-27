@@ -91,6 +91,7 @@
 			</resource>
 		</resources>
 		<plugins>
+			<!-- This plugin finds free ports and binds them to the specified portNames -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -105,55 +106,95 @@
 						<configuration>
 							<portNames>
 								<portName>test.server.port</portName>
+								<portName>jetty.stop.port</portName>
 							</portNames>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+			
+			<!-- Jetty plugin for embedded webapp container -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				
+				<!-- The configuration here applies to the jetty:run goal as well as to
+				     the integration tests.
+				  -->
+				<configuration>
+					<contextPath>${webapp.path}</contextPath>
+					
+					<!-- Somewhat complicated way of setting Jetty's port -->
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>${jetty.port}</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					
+					<!-- Inject the endpoint address into the frontend WAR -->
+					<systemProperties>
+						<systemProperty>
+							<name>webserviceEndpoint</name>
+							<value>http://localhost:${webservice.port}${webservice.path}</value>
+						</systemProperty>
+					</systemProperties>
+					
+					<!-- In addition to this project's WAR, deploy the web service WAR -->
+ 					<contextHandlers>
+						<contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+							<war>${basedir}/../beowulf-webservice-app/target/beowulf-webservice-app.war</war>
+							<contextPath>${webservice.path}</contextPath>
+						</contextHandler>
+					</contextHandlers>
+					
+					<!-- These are needed for the jetty:stop goal to work afer the int tests -->
+					<stopPort>${jetty.stop.port}</stopPort>
+					<stopKey>STOP</stopKey>
+				</configuration>
 				<executions>
 					<execution>
-						<!-- This says: Run the "run-war" goal of the tomcat plugin in the 
-							build phase "pre-integration-test". -->
-						<id>start-tomcat</id>
-						<goals>
-							<goal>run-war</goal>
-						</goals>
+						<id>start-jetty</id>
 						<phase>pre-integration-test</phase>
-						<configuration>
-							<port>${test.server.port}</port>
-							<path>${webapp.path}</path>
-							<fork>true</fork>
-							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-							<systemProperties>
-								<webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
-							</systemProperties>
-						</configuration>
-					</execution>
-					<execution>
-						<!-- This says: Run the "shutdown" goal of the tomcat plugin in the 
-							build phase "post-integration-test". -->
-						<id>stop-tomcat</id>
 						<goals>
-							<goal>shutdown</goal>
-						</goals>
-						<phase>post-integration-test</phase>
-						<configuration>
-							<path>${webapp.path}</path>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-cli</id>
-						<goals>
+							<!-- stop any previous instance to free up the port -->
+							<goal>stop</goal>
 							<goal>run</goal>
 						</goals>
+						
+						<!-- Configuration specific to the integration tests -->
 						<configuration>
-							<port>12345</port>
-							<path>${webapp.path}</path>
-							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+						
+							<!-- Web service port is different for integration test -->
+							<systemProperties>
+								<systemProperty>
+									<name>webserviceEndpoint</name>
+									<value>http://localhost:${test.server.port}${webservice.path}</value>
+								</systemProperty>
+							</systemProperties>
+							
+							<!-- Probably to disable scanning for changes during tests (?) -->
+              				<scanIntervalSeconds>0</scanIntervalSeconds>
+              				
+              				<!-- Run in background while tests run -->
+              				<daemon>true</daemon>
+              				
+              				<!-- Different port (automatically assigned) for integration test -->
+							<connectors>
+								<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+									<port>${test.server.port}</port>
+									<maxIdleTime>60000</maxIdleTime>
+								</connector>
+							</connectors>
 						</configuration>
+					</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<!-- This goal requires the stopPort and stopKey properties -->
+							<goal>stop</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -181,31 +222,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.10</version>
-				<configuration>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>${jetty.port}</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
-					<systemProperties>
-						<systemProperty>
-							<name>webserviceEndpoint</name>
-							<value>http://localhost:${webservice.port}${webservice.path}</value>
-						</systemProperty>
-					</systemProperties>
- 					<contextHandlers>
-						<contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
-							<war>${basedir}/../beowulf-webservice-app/target/beowulf-webservice-app.war</war>
-							<contextPath>${webservice.path}</contextPath>
-						</contextHandler>
-					</contextHandlers>
-				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
