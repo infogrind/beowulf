@@ -3,12 +3,14 @@ package ch.hotstuff.beowulf.wsclient;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
 
 import ch.hotstuff.beowulf.services.HelloWorld;
 
-
+// Marked as ignored because these tests need the web service to run at 8443.
+@Ignore
 public class AlternativeProxyFactoryTest
 {
 	@Test
@@ -39,7 +41,7 @@ public class AlternativeProxyFactoryTest
 		System.out.println("Calling again");
 		assertEquals("Hello, world!", service2.sayHello());
 	}
-	
+
 	@Test
 	public void springProxyFactoryBeanInstantiation()
 	{

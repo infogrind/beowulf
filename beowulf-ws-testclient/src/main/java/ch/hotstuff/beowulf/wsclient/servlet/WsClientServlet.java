@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import ch.hotstuff.beowulf.services.HelloWorld;
 import ch.hotstuff.beowulf.wsclient.util.SomeBean;
 
 public class WsClientServlet extends HttpServlet
@@ -21,6 +23,8 @@ public class WsClientServlet extends HttpServlet
 	private Logger LOG = Logger.getLogger(this.getClass());
 	
 	private SomeBean someBean;
+	private HelloWorld webService;
+	private FactoryBean<HelloWorld> proxyFactory;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,13 +35,20 @@ public class WsClientServlet extends HttpServlet
 		response.addHeader("Content-type", "text/plain");
 		out.println("Hundwyler up and running");
 		out.println("The name is " + someBean.myName());
+		out.println("Katzeklo <-> " + webService.revert("Katzeklo"));
+		out.println(webService.revert("Ein Neger mit Gazelle zagt im Regen nie."));
+		
+		out.println("Does the factory yield a singleton? " + proxyFactory.isSingleton());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void init() throws ServletException
 	{
 		LOG.info("Servlet initialization");
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		someBean = (SomeBean) context.getBean("someBean");
+		webService = (HelloWorld) context.getBean("helloService");
+		proxyFactory = (FactoryBean<HelloWorld>) context.getBean("&helloService_portProxyFactory");	
 	}
 }

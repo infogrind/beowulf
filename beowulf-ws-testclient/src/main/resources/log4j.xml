@@ -21,7 +21,7 @@
 
     <!-- for all other loggers log only info and above log messages -->
     <logger name="org.springframework" additivity="false">
-    	<level value="INFO"/>
+    	<level value="ERROR"/>
     	<appender-ref ref="STDOUT"/>
     	<appender-ref ref="FILE"/>
     </logger>
@@ -38,7 +38,7 @@
     </logger>
     
     <root>
-        <level value="INFO"/>
+        <level value="ERROR"/>
         <appender-ref ref="STDOUT" /> 
         <appender-ref ref="FILE" /> 
     </root> 
