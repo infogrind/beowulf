@@ -1,3 +1,16 @@
+2012-05-28:
+- Switched back from Jetty to Tomcat. Using the 'addContextWarDependencies'
+  property, with the intent that context wars are deployed.
+- However, there is a problem with deploying the WARs. The following exception
+  appears:
+  org.codehaus.plexus.archiver.manager.NoSuchArchiverException: No such archiver: 'zip'.
+- When extracting the WARs manually in the target/tomcat/webapps directory,
+  everything works fine.
+- Next step: Find out the reason for the 'no such archiver'. Googling for this
+  error message gave very little results (at least not when the archiver type
+  was 'zip'.)
+
+2012-05-27:
 - Problem that 'mvn install' from master build causes failure in
   struts frontend integration test, because it can't load a class.
 - To reproduce, run
