@@ -22,3 +22,5 @@ The whole webapp/servlet stuff (but no handwritten java code!) is in the
 beowulf-webservice-app project. 
 
 Also, the project uses complete Eclipse/m2e integration.
+
+Some comment added in a branch locally.
