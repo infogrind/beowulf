@@ -56,9 +56,7 @@
 			<artifactId>struts-taglib</artifactId>
 		</dependency>
 
-        <!-- Need to mark this as provided so that it is not pulled in by the
-             cxf dependencies -->
-		<!-- CXF to access web service -->
+        <!-- CXF to access web service -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
