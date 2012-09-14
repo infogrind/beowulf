@@ -15,7 +15,17 @@
 		<webapp.path>/wsclient</webapp.path>
 	</properties>
 
-	<name>beowulf-ws-testclient Maven Webapp</name>
+	<name>Experimental Servlet WebApp</name>
+	<description>
+	This is a webapp with a servlet that manually initiates a spring context. 
+	Logging is used to display when exactly what is loaded.
+	The goal is to see whether only a singleton instance of the web service proxy is returned by the proxy factory. 
+	
+	To use:
+	  0. Make sure the web service (from beowulf-webservice-app) runs at http://localhost:8443/webservice/HelloWorld
+	  1. mvn tomcat:run
+	  2. Access http://localhost:12345/wsclient/wsclientservlet
+	</description>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<!-- Web service provider -->

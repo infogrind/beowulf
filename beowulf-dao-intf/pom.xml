@@ -11,7 +11,7 @@
     <artifactId>beowulf-dao-intf</artifactId>
     <packaging>jar</packaging>
 
-    <name>beowulf-dao-intf</name>
+    <name>Beowulf Persistence Layer Interface</name>
     <url>http://maven.apache.org</url>
 
     <properties>

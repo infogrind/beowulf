@@ -11,7 +11,7 @@
     <artifactId>beowulf-dao-impl</artifactId>
     <packaging>jar</packaging>
 
-    <name>beowulf-dao-impl</name>
+    <name>Beowulf Persistence Implementation</name>
     <url>http://maven.apache.org</url>
 
     <properties>

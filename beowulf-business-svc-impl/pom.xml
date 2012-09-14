@@ -11,7 +11,7 @@
     <artifactId>beowulf-business-svc-impl</artifactId>
     <packaging>jar</packaging>
 
-    <name>beowulf-business-svc-impl</name>
+    <name>Beowulf Business Services Implementation as POJOs</name>
     <url>http://maven.apache.org</url>
 
     <properties>

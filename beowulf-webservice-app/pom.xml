@@ -11,7 +11,16 @@
 	<artifactId>beowulf-webservice-app</artifactId>
 	<packaging>war</packaging>
 	
-	<name>beowulf-webservice-app Maven Webapp</name>
+	<name>Beowulf Business Service Exposition as SOAP WebService</name>
+	<description>
+	This webapp shows how using a spring config (and the CXF namespace stuff) only,
+	it is possible to expose the Beowulf business services as a SOAP web service.
+	
+	The only requirements on the service interface and POJO is that the interface has the annotation @WebService.
+	The service implementation class is then simply specified in the spring config of this webapp. That's all!
+	
+	For illustration purposes, the spring config also injects a DAO implementation into the service implementation object. 
+	</description>
 	<properties>
 		<webservice.path>/webservice</webservice.path>
 		<webservice.port>8443</webservice.port>

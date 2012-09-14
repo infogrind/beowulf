@@ -11,7 +11,12 @@
 	<artifactId>beowulf-frontend-json</artifactId>
 	<packaging>war</packaging>
 	
-	<name>beowulf-frontend-json Maven Webapp</name>
+	<name>Beowulf Sample JSON WebApp</name>
+	<description>
+	This webapp uses JSON for requests and responses.
+	It belongs to the frontend layer, but currently does not call any
+	lower layers (in order to facilitate testing inside the maven project).
+	</description>
 	<properties>
 		<webservice.path>/beowulfsvc</webservice.path>
 	</properties>

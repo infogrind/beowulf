@@ -19,7 +19,12 @@
 		<webservice.path>/beowulf-webservice-app</webservice.path>
 	</properties>
 
-	<name>beowulf-frontend-struts Maven Webapp</name>
+	<name>Beowulf Web Based Frontend using Struts</name>
+	<description>
+	This sample frontend layer app showcases how to build a web based application
+	that calls lower layer business services via web services.
+	In addition, there is an example of a Selenium 2 integration test and page objects.
+	</description>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<!-- Beowulf components -->
