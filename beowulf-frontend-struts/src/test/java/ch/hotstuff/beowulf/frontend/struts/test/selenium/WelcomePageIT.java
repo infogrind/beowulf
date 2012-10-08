@@ -3,6 +3,7 @@ package ch.hotstuff.beowulf.frontend.struts.test.selenium;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -31,6 +32,7 @@ public class WelcomePageIT
 	}
 	
 	@Test
+	@Ignore
 	public void foodinfoPageShowsCorrectMessage()
 	{
 		final String FOOD = "Blutwurst";

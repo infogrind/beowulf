@@ -34,12 +34,15 @@
 		</dependency>
 		
 		<!-- For testing -->
+		<!-- 
+			marius/2012-10-08: Disabled since this does not work. See ../TODO.
 		<dependency>
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-webservice-app</artifactId>
 			<type>war</type>
 			<scope>tomcat</scope>
 		</dependency>
+		 -->
 		
 		<!-- Spring -->
 		<dependency>
