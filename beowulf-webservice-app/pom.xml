@@ -11,7 +11,7 @@
 	<artifactId>beowulf-webservice-app</artifactId>
 	<packaging>war</packaging>
 	
-	<name>Beowulf Business Service Exposition as SOAP WebService</name>
+	<name>WebService (server) for Beowulf business tier</name>
 	<description>
 	This webapp shows how using a spring config (and the CXF namespace stuff) only,
 	it is possible to expose the Beowulf business services as a SOAP web service.
