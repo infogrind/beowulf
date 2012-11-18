@@ -1,4 +1,49 @@
+# vim:ft=text
 # Add new entries at the top
+
+2012-11-18: Persistence considerations
+
+Location of the EntityManager
+-----------------------------
+In which layer should the persistence context be? In Logon, it is in the
+business layer, as a field in each (container managed) EJB. The field has the
+@PersistenceContext annotation, so the container injects the persistence
+context. Does it make sense (in general) that the persistence context is in
+the business tier?
+
+From the outside, it seems better to keep the EntityManager inside the
+persistence layer. Separation of concerns says that the business layer should
+not care whether we use JPA or something else for persistence. We might as well
+save everything in text files. 
+
+Dependency Injection in Persistence Layer
+-----------------------------------------
+Depending on the environment, it should be possible to use different persistence
+implementations:
+- full fledged data source (e.g. OracleDB) for production and int/ref
+  environment
+- local file-based for local development
+- in-memory DB for local integration tests
+- All DBs should be initialized from the same DDL
+- Dev: there should be a special command to reset it. The in-memory DB should be
+  initialized from DDLs + testdata
+
+Possible scenarios:
+- Different persistence.xml file in the persistence jar's META-INF, depending on
+  the environment.
+  Disadvantage: not the same war in development and production.
+- Overriding persistenceContext properties in code that sets up dev env, see
+  http://stackoverflow.com/questions/8836834/read-environment-variables-in-persistence-xml-file
+  Advantage: have a production-grade persistence.xml file
+
+How to then test business tests:
+- Have a separate business-test project which depends on the business service
+  project
+- Before unit tests, create persistence context with overridden attributes (e.g.
+  in-memory DB). For this you can use spring:
+  http://static.springsource.org/spring/docs/3.1.x/spring-framework-reference/html/orm.html#orm-jpa
+- Then inject this into the persistence implementation.
+
 
 2012-09-14:
 - I've tried to use a special syntax in the pom.xml of the
