@@ -1,6 +1,11 @@
 # vim:ft=text
 # Add new entries at the top
 
+2012-11-18: To do next:
+- Create tests in beowulf-business-tests that set up the business services and
+  dao implementation as spring bean (perhaps check out section on tests in
+  spring documentation) - in branch 'beowulf-business-tests'
+
 2012-11-18: Persistence considerations
 
 Location of the EntityManager
