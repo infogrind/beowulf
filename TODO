@@ -1,3 +1,18 @@
+# Add new entries at the top
+
+2012-09-14:
+- I've tried to use a special syntax in the pom.xml of the
+  beowulf-frontend-struts project (dependency on beowulf-webservice-app of type
+  'war' and scope 'tomcat'). This should build and load the war into the tomcat
+  container.
+
+  Tomcat correctly reads the pom.xml configuration (it appears), but then the
+  following error is shown in the log:
+      [INFO] Deploying dependency wars
+      [INFO] Deploy warfile: /Users/marius/Projects/beowulf/beowulf-webservice-app/target/beowulf-webservice-app.war
+      [ERROR] org.codehaus.plexus.archiver.manager.NoSuchArchiverException: No such archiver: 'zip'.
+  I could not yet find a solution by googling for this.
+
 2012-05-28:
 - Switched back from Jetty to Tomcat. Using the 'addContextWarDependencies'
   property, with the intent that context wars are deployed.
@@ -18,16 +33,3 @@
   from the master build directory.
   Perhaps it has to do with the fact that tomcat and jetty both run in the same
   JVM. Perhaps using jetty for everything would help. 
-
-2012-09-14:
-- I've tried to use a special syntax in the pom.xml of the
-  beowulf-frontend-struts project (dependency on beowulf-webservice-app of type
-  'war' and scope 'tomcat'). This should build and load the war into the tomcat
-  container.
-
-  Tomcat correctly reads the pom.xml configuration (it appears), but then the
-  following error is shown in the log:
-      [INFO] Deploying dependency wars
-      [INFO] Deploy warfile: /Users/marius/Projects/beowulf/beowulf-webservice-app/target/beowulf-webservice-app.war
-      [ERROR] org.codehaus.plexus.archiver.manager.NoSuchArchiverException: No such archiver: 'zip'.
-  I could not yet find a solution by googling for this.
