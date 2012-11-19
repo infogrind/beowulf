@@ -19,6 +19,18 @@
 	</properties>
 
 	<dependencies>
+		<!-- Beowulf components -->
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-business-svc</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-business-svc-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -27,10 +39,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
