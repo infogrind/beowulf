@@ -18,6 +18,7 @@
 		<module>../beowulf-frontend-json</module>
 		<module>../beowulf-frontend-struts</module>
 		<module>../beowulf-ws-testclient</module>
+        <module>../beowulf-business-test</module>
 	</modules>
 
 	<properties>
