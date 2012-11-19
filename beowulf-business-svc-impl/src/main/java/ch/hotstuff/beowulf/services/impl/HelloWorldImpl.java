@@ -1,25 +1,27 @@
 package ch.hotstuff.beowulf.services.impl;
 
 import ch.hotstuff.beowulf.dao.HelloDao;
+import ch.hotstuff.beowulf.dao.MessageDao;
 import ch.hotstuff.beowulf.services.HelloWorld;
 import ch.hotstuff.beowulf.types.PackageType;
 
 public class HelloWorldImpl implements HelloWorld
 {
-	private HelloDao dao;
+	private HelloDao helloDao;
+	private MessageDao msgDao;
 	
 	public HelloDao getDao() {
-		return dao;
+		return helloDao;
 	}
 
 	public void setDao(HelloDao dao) {
-		this.dao = dao;
+		this.helloDao = dao;
 	}
 
 	@Override
 	public String sayHello() 
 	{
-		final String greeting = dao.getHelloGreeting();
+		final String greeting = helloDao.getHelloGreeting();
 		return greeting;
 	}
 
@@ -47,6 +49,14 @@ public class HelloWorldImpl implements HelloWorld
 		}
 		// Can we somehow avoid this?
 		return null;
+	}
+
+	public MessageDao getMsgDao() {
+		return msgDao;
+	}
+
+	public void setMsgDao(MessageDao msgDao) {
+		this.msgDao = msgDao;
 	}
 
 }
