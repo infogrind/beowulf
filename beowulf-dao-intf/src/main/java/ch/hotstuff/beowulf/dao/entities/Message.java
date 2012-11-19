@@ -1,4 +1,4 @@
-package ch.hotstuff.beowulf.dao.dt;
+package ch.hotstuff.beowulf.dao.entities;
 
 /**
  * Sample entity class, according to the tutorial in Ch. 2 of
