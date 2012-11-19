@@ -1,29 +1,39 @@
 package ch.hotstuff.beowulf.dao.impl;
 
+import javax.persistence.EntityManager;
+
 import ch.hotstuff.beowulf.dao.MessageDao;
 import ch.hotstuff.beowulf.dao.entities.Message;
 
-public class MessageDaoImpl implements MessageDao {
+public class MessageDaoImpl implements MessageDao
+{
+	EntityManager em;
 	
 	@Override
 	public Message findById(Long messageId)
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(Message.class, messageId);
 	}
 
 	@Override
 	public void persist(Message message)
 	{
-		// TODO Auto-generated method stub
-		return;
+		em.persist(message);
 	}
 
 	@Override
 	public void modify(Message message)
 	{
-		// TODO Auto-generated method stub
-		return;
+		em.merge(message);
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 
 }
