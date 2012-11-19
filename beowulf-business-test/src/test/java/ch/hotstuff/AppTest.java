@@ -1,38 +1,33 @@
 package ch.hotstuff;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"/test-context.xml"})
+public class AppTest extends TestCase implements ApplicationContextAware
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+	private ApplicationContext appContext;
+	@Test
+	public void testSpringContext()
+	{
+		assertNotNull(appContext);
+	}
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext)
+	throws BeansException
+	{
+		this.appContext = applicationContext;
+	}
 }
