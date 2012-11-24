@@ -15,8 +15,8 @@
 		<server.port>8080</server.port>
 		<webapp.path>/beowulf-frontend</webapp.path>
 		<ping.test.path>/Welcome.do</ping.test.path>
-		<webservice.port>${server.port}</webservice.port>
-		<webservice.path>/beowulf-webservice-app</webservice.path>
+		<webservice.port>8443</webservice.port>
+		<webservice.path>/webservice</webservice.path>
 	</properties>
 
 	<name>Beowulf Web Based Frontend using Struts</name>
@@ -149,7 +149,7 @@
 							<fork>true</fork>
 							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 					        <systemProperties>
-					            <webserviceEndpoint>http://localhost:${test.server.port}${webservice.path}</webserviceEndpoint>
+					            <webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
 					        </systemProperties>
           				</configuration>
 					</execution>
@@ -208,7 +208,7 @@
 								<path>${webapp.path}</path>
 								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 						        <systemProperties>
-						            <webserviceEndpoint>http://localhost:${server.port}${webservice.path}</webserviceEndpoint>
+						            <webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
 						        </systemProperties>
 							</configuration>
 						</execution>
