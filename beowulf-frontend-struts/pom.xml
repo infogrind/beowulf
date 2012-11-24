@@ -32,6 +32,18 @@
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-business-svc</artifactId>
 		</dependency>
+
+		<!-- For local service injection -->
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-business-svc-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-dao-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		
 		<!-- For testing -->
 		<!-- 

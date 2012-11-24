@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<!-- import the business service bean -->
-	<import resource="applicationContext-services-jaxws.xml"/>
+	<import resource="applicationContext-services-local.xml"/>
 
     <!-- inject the struts action -->
     <!-- attention, use the 'name' and not the 'id' attribute for such

@@ -7,5 +7,9 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<!-- Configuration of the helloService as a local jar implementation -->
-	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl" />
+	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl">
+		<property name="dao" ref="helloDao"/>
+	</bean>
+
+	<bean id="helloDao" class="ch.hotstuff.beowulf.dao.impl.HelloDaoImpl" />
 </beans>
