@@ -107,6 +107,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Persistence -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>beowulf-frontend-struts</finalName>
