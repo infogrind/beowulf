@@ -9,6 +9,14 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
+	<!--
+		Activates various annotations to be detected in bean classes: Spring's
+		@Required and @Autowired, as well as JSR 250's @PostConstruct,
+		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+		and @PersistenceUnit (if available).
+	-->
+	<context:annotation-config/>
+
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 
 	<!-- DataSource configuration for Apache Commons DBCP. -->
@@ -31,6 +39,6 @@
 
 
 	<bean id="helloDao" class="ch.hotstuff.beowulf.dao.impl.HelloDaoImpl" />
-
+	<bean id="messageDao" class="ch.hotstuff.beowulf.dao.impl.MessageDaoImpl" />
 
 </beans>

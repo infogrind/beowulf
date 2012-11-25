@@ -11,6 +11,7 @@
 	<!-- Configuration of the helloService as a local jar implementation -->
 	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl">
 		<property name="dao" ref="helloDao"/>
+		<property name="msgDao" ref="messageDao" />
 	</bean>
 
 </beans>
