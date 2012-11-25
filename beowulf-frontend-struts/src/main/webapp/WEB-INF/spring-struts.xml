@@ -6,6 +6,15 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+	<!--
+		Import the DAO configuration. This is required by the local services,
+		but we include it on this level to be able to 'inject' a different
+		DAO configuration in tests.
+
+		This is in line with the 'dependency injection' philosophy.
+	-->
+	<import resource="applicationContext-dao.xml"/>
+
 	<!-- import the business service bean -->
 	<import resource="applicationContext-services-local.xml"/>
 

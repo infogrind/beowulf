@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ch.hotstuff.beowulf.services.HelloWorld;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/applicationContext-services-local.xml"})
+@ContextConfiguration({"/applicationContext-services-local.xml", "/applicationContext-dao.xml"})
 public class FrontendSpringConfigTest
 {
 	@Autowired
