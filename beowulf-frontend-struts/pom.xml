@@ -69,6 +69,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 
 		<!-- Struts -->
@@ -144,6 +149,12 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<!-- Provide the spring config files in WEB-INF for unit tests -->
+		<testResources>
+			<testResource>
+				<directory>src/main/webapp/WEB-INF</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<!-- This plugin finds free ports and binds them to the specified portNames -->
 			<plugin>
