@@ -6,15 +6,12 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<!-- import the business service bean -->
-	<import resource="applicationContext-services-local.xml"/>
+	<import resource="applicationContext-dao.xml"/>
 
-    <!-- inject the struts action -->
-    <!-- attention, use the 'name' and not the 'id' attribute for such
-         beans!
-         -->
-    <bean name="/Welcome" class="ch.hotstuff.beowulf.frontend.struts.action.WelcomeAction"/>
-    <bean name="/SomeAction" class="ch.hotstuff.beowulf.frontend.struts.action.SomeAction">
-		<property name="helloService" ref="helloService" />
-    </bean>
+	<!-- Configuration of the helloService as a local jar implementation -->
+	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl">
+		<property name="dao" ref="helloDao"/>
+		<property name="msgDao" ref="messageDao" />
+	</bean>
+
 </beans>

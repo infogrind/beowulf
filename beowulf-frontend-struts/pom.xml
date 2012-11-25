@@ -15,8 +15,8 @@
 		<server.port>8080</server.port>
 		<webapp.path>/beowulf-frontend</webapp.path>
 		<ping.test.path>/Welcome.do</ping.test.path>
-		<webservice.port>${server.port}</webservice.port>
-		<webservice.path>/beowulf-webservice-app</webservice.path>
+		<webservice.port>8443</webservice.port>
+		<webservice.path>/webservice</webservice.path>
 	</properties>
 
 	<name>Beowulf Web Based Frontend using Struts</name>
@@ -31,6 +31,18 @@
 		<dependency>
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-business-svc</artifactId>
+		</dependency>
+
+		<!-- For local service injection -->
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-business-svc-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.hotstuff</groupId>
+			<artifactId>beowulf-dao-impl</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		
 		<!-- For testing -->
@@ -53,6 +65,16 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-struts</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 
 		<!-- Struts -->
 		<dependency>
@@ -94,6 +116,29 @@
 			<artifactId>selenium-java</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Persistence -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 
 	</dependencies>
 	<build>
@@ -104,6 +149,12 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<!-- Provide the spring config files in WEB-INF for unit tests -->
+		<testResources>
+			<testResource>
+				<directory>src/main/webapp/WEB-INF</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<!-- This plugin finds free ports and binds them to the specified portNames -->
 			<plugin>
@@ -149,7 +200,7 @@
 							<fork>true</fork>
 							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 					        <systemProperties>
-					            <webserviceEndpoint>http://localhost:${test.server.port}${webservice.path}</webserviceEndpoint>
+					            <webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
 					        </systemProperties>
           				</configuration>
 					</execution>
@@ -208,7 +259,7 @@
 								<path>${webapp.path}</path>
 								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
 						        <systemProperties>
-						            <webserviceEndpoint>http://localhost:${server.port}${webservice.path}</webserviceEndpoint>
+						            <webserviceEndpoint>http://localhost:${webservice.port}${webservice.path}</webserviceEndpoint>
 						        </systemProperties>
 							</configuration>
 						</execution>

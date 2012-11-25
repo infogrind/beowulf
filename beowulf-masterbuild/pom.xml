@@ -115,6 +115,17 @@
 				<artifactId>spring-test</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
 			<!-- Struts -->
 			<dependency>
 				<groupId>org.apache.struts</groupId>
@@ -134,7 +145,40 @@
 				<version>1.1</version>
 			</dependency>
 
+			<!-- Need to explicitly specify a newer version of
+				commons-collections, otherwise commons-pool (above)
+				loads an older version (2.1), which breaks Selenium.
+
+				Basically, the reason for the problem is that a transitive
+				dependency on commons-collections 2.1 in runtime scope seems to
+				override a transitive dependency on version 3.2.1 in test scope.
+				A cleaner fix would be if the failsafe plugin completely
+				maintained its own dependency resolution.
+			 -->
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+
+
+
 			<!-- Persistence -->
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>3.4.0.GA</version>
+			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
@@ -145,7 +189,12 @@
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>1.2.16</version>
+				<version>1.2.17</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.7.2</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

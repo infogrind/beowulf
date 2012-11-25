@@ -1,14 +1,16 @@
 package ch.hotstuff.beowulf.dao.impl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import ch.hotstuff.beowulf.dao.MessageDao;
 import ch.hotstuff.beowulf.dao.entities.Message;
 
 public class MessageDaoImpl implements MessageDao
 {
-	EntityManager em;
-	
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
 	public Message findById(Long messageId)
 	{
