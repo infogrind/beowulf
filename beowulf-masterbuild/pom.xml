@@ -29,13 +29,6 @@
 		<jaxws.version>2.2.8</jaxws.version>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-	</dependencies>
-
 	<dependencyManagement>
 		<dependencies>
 			<!-- Modules of this project -->
