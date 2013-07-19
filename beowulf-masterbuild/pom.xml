@@ -19,6 +19,7 @@
 		<module>../beowulf-frontend-struts</module>
 		<module>../beowulf-ws-testclient</module>
         <module>../beowulf-business-test</module>
+        <module>../beowulf-application</module>
 	</modules>
 
 	<properties>
@@ -75,6 +76,12 @@
 				<artifactId>beowulf-ws-testclient</artifactId>
 				<version>1.0-SNAPSHOT</version>
 				<type>war</type>
+			</dependency>
+			<dependency>
+				<groupId>ch.hotstuff</groupId>
+				<artifactId>beowulf-application</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<type>ear</type>
 			</dependency>
 
 			<!-- External dependencies -->
