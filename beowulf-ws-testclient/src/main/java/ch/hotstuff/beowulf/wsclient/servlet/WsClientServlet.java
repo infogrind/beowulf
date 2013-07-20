@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -20,7 +21,7 @@ public class WsClientServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	private Logger LOG = Logger.getLogger(this.getClass());
+	private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
 	private SomeBean someBean;
 	private HelloWorld webService;
