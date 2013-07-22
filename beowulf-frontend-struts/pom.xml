@@ -32,19 +32,41 @@
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-business-svc</artifactId>
 		</dependency>
-
-		<!-- For local service injection -->
+		
+		<!-- For unit tests, we always need this (with scope test).
+			Depending on the profile, it is also added with runtime scope,
+			see below.
+		-->
 		<dependency>
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-business-svc-impl</artifactId>
-			<scope>runtime</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>ch.hotstuff</groupId>
 			<artifactId>beowulf-dao-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+	
+
+		<!-- Persistence -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+				
+				
 		<!-- For testing -->
 		<!-- 
 			marius/2012-10-08: Disabled since this does not work. See ../TODO.
@@ -86,18 +108,6 @@
 			<artifactId>struts-taglib</artifactId>
 		</dependency>
 
-        <!-- CXF to access web service -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
 		<!-- To use servlet related classes -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -122,25 +132,90 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Persistence -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<!-- For local service injection -->
+				<dependency>
+					<groupId>ch.hotstuff</groupId>
+					<artifactId>beowulf-business-svc-impl</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>ch.hotstuff</groupId>
+					<artifactId>beowulf-dao-impl</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<delete file="${project.build.outputDirectory}/applicationContext-services.xml"/>
+										<copy file="src/main/resources/applicationContext-services-local.xml"
+											tofile="${project.build.outputDirectory}/applicationContext-services.xml"/>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>remote</id>
+			<dependencies>
+				<!-- CXF to access web service -->
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-frontend-jaxws</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-transports-http</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<delete file="${project.build.outputDirectory}/applicationContext-services.xml"/>
+										<copy file="src/main/resources/applicationContext-services-jaxws.xml"
+											tofile="${project.build.outputDirectory}/applicationContext-services.xml"/>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 	<build>
 		<finalName>beowulf-frontend-struts</finalName>
 		<resources>
