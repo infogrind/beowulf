@@ -6,6 +6,11 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+	<!--
+		Import the DAO configuration.
+	-->
+	<import resource="applicationContext-dao.xml"/>
+
 	<!-- Configuration of the helloService as a local jar implementation -->
 	<bean id="helloService" class="ch.hotstuff.beowulf.services.impl.HelloWorldImpl">
 		<property name="dao" ref="helloDao"/>
