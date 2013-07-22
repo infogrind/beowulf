@@ -27,6 +27,40 @@
 	  2. Access http://localhost:12345/wsclient/wsclientservlet
 	</description>
 	<url>http://maven.apache.org</url>
+	
+	<profiles>
+		<profile>
+			<id>log4j</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+					<scope>runtime</scope>
+		        </dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>logback</id>
+			<dependencies>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	
 	<dependencies>
 		<!-- Web service provider -->
 		<dependency>
@@ -35,16 +69,6 @@
 			<scope>compile</scope>
 		</dependency>
 	
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-            <scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-            <scope>runtime</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
