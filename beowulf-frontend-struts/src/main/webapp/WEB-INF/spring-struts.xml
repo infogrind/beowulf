@@ -16,7 +16,11 @@
 	<import resource="applicationContext-dao.xml"/>
 
 	<!-- import the business service bean -->
-	<import resource="applicationContext-services-local.xml"/>
+	<!-- applicationContext-services.xml is generated either from
+		applicationContext-services-local.xml or from
+		applicationContext-services-jaxws.xml, depending on the Maven profile
+		(see pom.xml). -->
+	<import resource="classpath:/applicationContext-services.xml"/>
 
     <!-- inject the struts action -->
     <!-- attention, use the 'name' and not the 'id' attribute for such
