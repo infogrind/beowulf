@@ -4,4 +4,4 @@ define(function() {
 	return {
 		myname : function() { return "Max Utils"; }
 	};
-})
+});

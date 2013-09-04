@@ -8,4 +8,4 @@ define(['util'], function(util) {
 	};
 	
 	return app;
-})
+});
