@@ -6,6 +6,9 @@ requirejs.config({
 
 var app = 'application';
 
+// Enable this only in dev mode
+app = 'applicationDev';
+
 require([app], function(application) {
 	console.log("Pulling in application and initializing");
 	application.initialize();
