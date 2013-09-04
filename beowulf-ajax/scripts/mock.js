@@ -1,4 +1,4 @@
 define(function() {
-	console.log("Starting up mock.js");
-	console.log("Setting up mock http backend");
+	console.log("mock.js: Starting up");
+	console.log("mock.js: Setting up mock http backend");
 });

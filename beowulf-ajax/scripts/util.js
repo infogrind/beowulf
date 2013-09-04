@@ -1,5 +1,5 @@
 define(function() {
-	console.log("Starting up utils.js");
+	console.log("utils.js: Starting up");
 	
 	return {
 		myname : function() { return "Max Utils"; }

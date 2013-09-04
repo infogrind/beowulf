@@ -1,9 +1,9 @@
 define(['util'], function(util) {
-	console.log("Starting up application.js");
+	console.log("application.js: Starting up");
 	
 	var app = {
 		initialize : function() {
-			console.log("Initializing app");
+			console.log("application.js: Initializing app");
 		}
 	};
 	

@@ -1,4 +1,4 @@
-console.log('Running main.js');
+console.log('main.js: Running');
 
 requirejs.config({
 	baseUrl: 'scripts'
@@ -10,6 +10,6 @@ var app = 'application';
 app = 'applicationDev';
 
 require([app], function(application) {
-	console.log("Pulling in application and initializing");
+	console.log("main.js: Pulling in application and initializing");
 	application.initialize();
 });
