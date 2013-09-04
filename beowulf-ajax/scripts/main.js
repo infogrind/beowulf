@@ -4,7 +4,9 @@ requirejs.config({
 	baseUrl: 'scripts'
 });
 
-require(['application'], function(application) {
+var app = 'application';
+
+require([app], function(application) {
 	console.log("Pulling in application and initializing");
 	application.initialize();
 });
