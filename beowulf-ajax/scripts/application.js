@@ -1,4 +1,4 @@
-define(['util', 'angular', 'controllers'], function(util, angular) {
+define(['util', 'angular', 'controllers', 'services'], function(util, angular) {
 	console.log("application.js: Starting up");
 	
 	/* Define the main application module. This will be passed to
@@ -7,15 +7,8 @@ define(['util', 'angular', 'controllers'], function(util, angular) {
 	 * The controllers are defined in a separate module myControllers;
 	 * see controllers.js.
 	 */
-	var appModule = angular.module('myApp', ['myControllers']);
-	
-	appModule.factory('myService', function () {
-		return {
-			sayHello	 : function() {
-				console.log("Hello from myService! :-)");
-			}
-		};
-	});
+	var appModule = angular.module('myApp', ['myControllers', 'myServices']);
+
 	
 	var application = {
 		initialize : function() {
