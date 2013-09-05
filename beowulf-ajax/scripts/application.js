@@ -9,7 +9,9 @@ define(['util', 'angular', 'controllers'], function(util, angular) {
 	 */
 	var appModule = angular.module('myApp', ['myControllers']);
 
-	
+	/* The returned requirejs module (not to be confused with an angularjs module)
+	 * has a single method initialize(), which bootstraps the angularjs application.
+	 */
 	var application = {
 		initialize : function() {
 			console.log("application.js: Initializing app");
