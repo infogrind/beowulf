@@ -5,7 +5,7 @@ define(['angular'], function(angular) {
 	module.factory('myService', function () {
 		return {
 			sayHello	 : function() {
-				console.log("Hello from myService! :-)");
+				return "Hello from myService! :-)";
 			}
 		};
 	});
