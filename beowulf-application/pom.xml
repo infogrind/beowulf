@@ -10,7 +10,6 @@
     <groupId>ch.hotstuff</groupId>
     <artifactId>beowulf-application</artifactId>
     <packaging>ear</packaging>
-    <version>1.0-SNAPSHOT</version>
     <name>beowulf-application JavaEE6 Assembly</name>
     <url>http://maven.apache.org</url>
 
